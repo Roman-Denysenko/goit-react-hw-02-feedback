@@ -15,21 +15,9 @@ class App extends Component {
     bad: 0,
   };
 
-  onIncrementGood = () => {
+  onLeaveFeedback = feedback => {
     this.setState(prevState => {
-      return { good: prevState.good + 1 };
-    });
-  };
-
-  onIncrementNeutral = () => {
-    this.setState(prevState => {
-      return { neutral: prevState.neutral + 1 };
-    });
-  };
-
-  onIncrementBad = () => {
-    this.setState(prevState => {
-      return { bad: prevState.bad + 1 };
+      return { [feedback]: prevState[feedback] + 1 };
     });
   };
 
@@ -49,9 +37,8 @@ class App extends Component {
       <section className="container">
         <Section title="Please leave feedback">
           <Buttons
-            onIncrementGood={this.onIncrementGood}
-            onIncrementNeutral={this.onIncrementNeutral}
-            onIncrementBad={this.onIncrementBad}
+            options={this.state}
+            onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
         <Statistics
